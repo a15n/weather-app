@@ -7,14 +7,13 @@ import WeatherCards from './WeatherCards';
 const cityList = [
   'San Francisco, CA',
   'New York City, NY',
-  'Boston, MS',
+  'Boston, MA',
 ];
 
 class App extends Component {
   constructor() {
     super();
 
-    // https://facebook.github.io/react/docs/refs-and-the-dom.html
     this.state = {
       selectedCity: localStorage.getItem('selectedCity') || 'San Francisco', // TODO tie this to localStorage
       selectedCityForecast: [],
@@ -23,25 +22,25 @@ class App extends Component {
     this.updateCity = this.updateCity.bind(this);
   }
   componentDidMount() {
-    this.getForcast();
+    this.getForcast(this.state.selectedCity);
   }
-  getForcast() {
+  getForcast(selectedCity) {
     // https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="San Francisco, CA")&format=json
-    const yahooUrl=`https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="${this.state.selectedCity}")&format=json`;
-    console.log(yahooUrl);
+    const yahooUrl=`https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="${selectedCity}")&format=json`;
 
     request({url: yahooUrl}).then(dataString => {
       const data = JSON.parse(dataString);
       const forecast = data.query.results.channel;
-      console.log(this.state.selectedCity, forecast);
-      this.setState({selectedCityForecast: forecast});
+      this.setState({
+        selectedCity: selectedCity,
+        selectedCityForecast: forecast
+      });
     });
   }
   updateCity() {
     const selectedCity = this.select.value;
     localStorage.setItem('selectedCity', selectedCity);
-    this.setState({selectedCity});
-    this.getForcast();
+    this.getForcast(selectedCity);
   }
   render() {
     const { selectedCity, selectedCityForecast } = this.state;
