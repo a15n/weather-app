@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.css';
 
 class Dropdown extends Component {
   constructor() {
@@ -12,7 +13,8 @@ class Dropdown extends Component {
   render() {
     const { options, defaultValue } = this.props;
     return (
-      <select 
+      <select
+        className="Select" 
         ref={(input)=> this.select = input}
         defaultValue={defaultValue}
         onChange={this.handleOnChange} 

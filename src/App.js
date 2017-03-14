@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { request } from './utils';
-import Dropdown from './Dropdown/component'
+import Select from './Select/component'
 import WeatherCards from './WeatherCards/component';
 
 const cityList = [
@@ -44,7 +44,7 @@ class App extends Component {
     const { selectedCity, selectedCityForecast } = this.state;
     return (
       <div>
-        <Dropdown options={cityList} defaultValue={selectedCity} onChange={this.updateCity}/>
+        <Select options={cityList} defaultValue={selectedCity} onChange={this.updateCity}/>
         
         <h1>{selectedCity}</h1>
 
