@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import './style.css';
 
 class WeatherCard extends Component {
   render() {
     const { i, date, high, low, description } = this.props;
     return ( 
-      <div key={i}>
+      <div className="Card" key={i}>
         <h1>{date}</h1>
         <h2>High: {high}</h2>
         <h2>Low: {low}</h2>

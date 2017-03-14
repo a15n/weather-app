@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card/component';
+import './style.css';
 
 // TODO add loading state
 
@@ -15,7 +16,7 @@ class WeatherCards extends Component {
   render() {
     const { forecast } = this.props;
     return (
-      <div>
+      <div className="WeatherCards">
         {forecast.map(this.renderCard)}
       </div>
     );

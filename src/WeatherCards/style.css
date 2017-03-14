@@ -1,0 +1,12 @@
+.WeatherCards {
+  display: flex;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+
+/*Mobile treatment*/
+@media (max-device-width: 480px) {
+  .WeatherCards {
+    flex-direction: column;  
+  }
+}
