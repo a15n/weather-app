@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
+import Card from './Card/component';
 
 // TODO add loading state
 
 class WeatherCards extends Component {
   renderCard(forecast, i) {
-    // TODO rename forecast
     const { date, high, low, text:description } = forecast.item.forecast;
-    return ( 
+    return (
       <div key={i}>
-        <h1>{date}</h1>
-        <h2>High: {high}</h2>
-        <h2>Low: {low}</h2>
-        <h3>{description}</h3>
-      </div>  
+        <Card date={date} high={high} low={low} description={description} />    
+      </div>
     )
   }
   render() {
-    const { city, forecast } = this.props;
+    const { forecast } = this.props;
     return (
       <div>
-        <h3>Weather for {city}</h3>  
         {forecast.map(this.renderCard)}
       </div>
     );
@@ -27,8 +23,6 @@ class WeatherCards extends Component {
 }
 
 WeatherCards.PropTypes = {
-  city: React.PropTypes.string.isRequired,
   forecast: React.PropTypes.array.isRequired,
 }
-
 export default WeatherCards;

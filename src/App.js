@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { request } from './utils';
-import WeatherCards from './WeatherCards';
+import WeatherCards from './WeatherCards/component';
 
 // TODO the city select should be it's own component
 const cityList = [
@@ -44,9 +44,10 @@ class App extends Component {
   }
   render() {
     const { selectedCity, selectedCityForecast } = this.state;
+    // TODO make the select a standalone component
     return (
       <div>
-        <h2>Hello world</h2>
+
         <select 
           ref={(input)=> this.select = input}
           defaultValue={selectedCity}
@@ -56,6 +57,8 @@ class App extends Component {
             return <option key={i} value={city}>{city}</option>
           })}
         </select>
+
+        <h1>{selectedCity}</h1>
 
         <WeatherCards city={selectedCity} forecast={selectedCityForecast}></WeatherCards>
       </div>
