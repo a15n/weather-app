@@ -3,10 +3,9 @@
 
 # Install
 
-* I had to install this to get yahoo API to work https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi/related?hl=en.
-  * IF YOU DECIDE TO USE THIS YOU SHOULD UNINSTALL AFTER THE DEMO
 * `git clone https://github.com/a15n/weather-app.git`
-* `npm install && npm run start` (or `yarn && yarn start`)
+* `npm run server` (or `yarn serve`)
+* in a new tab run `npm run start` (or `yarn start`)
 * go to http://localhost:3000/
 
 # Learnings

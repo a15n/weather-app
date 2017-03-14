@@ -26,8 +26,8 @@ class App extends Component {
   }
   getForcast(selectedCity) {
     const yahooUrl=`https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="${selectedCity}")&format=json`;
-
-    request({url: yahooUrl}).then(dataString => {
+    const expressUrl = `http://localhost:8080/?proxyUrl=${yahooUrl}`;
+    request({url: expressUrl}).then(dataString => {
       const data = JSON.parse(dataString);
       const forecast = data.query.results.channel;
       this.setState({
