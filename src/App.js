@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { request } from './utils';
+import Dropdown from './Dropdown/component'
 import WeatherCards from './WeatherCards/component';
 
-// TODO the city select should be it's own component
 const cityList = [
   'San Francisco, CA',
   'New York City, NY',
@@ -15,7 +15,7 @@ class App extends Component {
     super();
 
     this.state = {
-      selectedCity: localStorage.getItem('selectedCity') || 'San Francisco', // TODO tie this to localStorage
+      selectedCity: localStorage.getItem('selectedCity') || 'San Francisco',
       selectedCityForecast: [],
     }
 
@@ -25,7 +25,6 @@ class App extends Component {
     this.getForcast(this.state.selectedCity);
   }
   getForcast(selectedCity) {
-    // https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="San Francisco, CA")&format=json
     const yahooUrl=`https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where woeid in (select woeid from geo.places(1) where text="${selectedCity}")&format=json`;
 
     request({url: yahooUrl}).then(dataString => {
@@ -37,27 +36,16 @@ class App extends Component {
       });
     });
   }
-  updateCity() {
-    const selectedCity = this.select.value;
-    localStorage.setItem('selectedCity', selectedCity);
-    this.getForcast(selectedCity);
+  updateCity(newCity) {
+    localStorage.setItem('selectedCity', newCity);
+    this.getForcast(newCity);
   }
   render() {
     const { selectedCity, selectedCityForecast } = this.state;
-    // TODO make the select a standalone component
     return (
       <div>
-
-        <select 
-          ref={(input)=> this.select = input}
-          defaultValue={selectedCity}
-          onChange={this.updateCity} 
-        >
-          {cityList.map((city, i) => {
-            return <option key={i} value={city}>{city}</option>
-          })}
-        </select>
-
+        <Dropdown options={cityList} defaultValue={selectedCity} onChange={this.updateCity}/>
+        
         <h1>{selectedCity}</h1>
 
         <WeatherCards city={selectedCity} forecast={selectedCityForecast}></WeatherCards>
