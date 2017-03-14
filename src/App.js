@@ -33,6 +33,7 @@ class App extends Component {
     request({url: yahooUrl}).then(dataString => {
       const data = JSON.parse(dataString);
       const forecast = data.query.results.channel;
+      console.log(this.state.selectedCity, forecast);
       this.setState({selectedCityForecast: forecast});
     });
   }
@@ -57,7 +58,7 @@ class App extends Component {
           })}
         </select>
 
-        <WeatherCards forecast={selectedCityForecast}></WeatherCards>
+        <WeatherCards city={selectedCity} forecast={selectedCityForecast}></WeatherCards>
       </div>
     );
   }
