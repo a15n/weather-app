@@ -44,9 +44,11 @@ class App extends Component {
     const { selectedCity, selectedCityForecast } = this.state;
     return (
       <div>
-        <Select options={cityList} defaultValue={selectedCity} onChange={this.updateCity}/>
-        
-        <h1>{selectedCity}</h1>
+        <header className="App-Header">
+          <h1 className="App-Header-city">{selectedCity}</h1>
+
+          <Select options={cityList} defaultValue={selectedCity} onChange={this.updateCity}/>
+        </header>
 
         <WeatherCards city={selectedCity} forecast={selectedCityForecast}></WeatherCards>
       </div>

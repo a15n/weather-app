@@ -4,9 +4,18 @@
   overflow-x: scroll;
 }
 
+.WeatherCards > div {
+  margin: 20px;
+}
+
 /*Mobile treatment*/
 @media (max-device-width: 480px) {
   .WeatherCards {
     flex-direction: column;  
+  }
+
+  .WeatherCards > div {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

@@ -6,9 +6,8 @@ class WeatherCard extends Component {
     const { i, date, high, low, description } = this.props;
     return ( 
       <div className="Card" key={i}>
-        <h1>{date}</h1>
-        <h2>High: {high}</h2>
-        <h2>Low: {low}</h2>
+        <h2>{date}</h2>
+        <h3>{high}&deg; / {low}&deg;</h3>
         <h3>{description}</h3>
       </div>  
     )
